@@ -42,26 +42,28 @@ public:
 		}
 	}
 
-	istream& operator>>(istream& in, Fraction& fraction) {
+	friend istream& operator>>(istream& in, Fraction& fraction) {
 		char slash;
 		cout << "Enter a fraction (n/d): ";
 		in >> fraction.numerator >> slash >> fraction.denominator;
 		return in;
 	}
 
-	Fraction operator+(Fraction op1, Fraction op2) {
+	friend Fraction operator+(Fraction op1, Fraction op2) {
+		int num = (op1.numerator * op2.denominator) + (op2.numerator * op1.denominator);
+		int den = op1.denominator * op2.denominator;
+		return Fraction(num, den);
+	}
+
+	friend Fraction operator-(Fraction op1, Fraction op2) {
 
 	}
 
-	Fraction operator-(Fraction op1, Fraction op2) {
+	friend Fraction operator*(Fraction op1, Fraction op2) {
 
 	}
 
-	Fraction operator*(Fraction op1, Fraction op2) {
-
-	}
-
-	Fraction operator/(Fraction op1, Fraction op2) {
+	friend Fraction operator/(Fraction op1, Fraction op2) {
 
 	}
 
