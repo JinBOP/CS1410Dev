@@ -56,19 +56,25 @@ public:
 	}
 
 	friend Fraction operator-(Fraction op1, Fraction op2) {
-
+		int num = (op1.numerator * op2.denominator) - (op2.numerator * op1.denominator);
+		int den = op1.denominator * op2.denominator;
+		return Fraction(num, den);
 	}
 
 	friend Fraction operator*(Fraction op1, Fraction op2) {
-
+		int num = op1.numerator * op2.numerator;
+		int den = op1.denominator * op2.denominator;
+		return Fraction(num, den);
 	}
 
 	friend Fraction operator/(Fraction op1, Fraction op2) {
-
+		int num = op1.numerator * op2.denominator;
+		int den = op1.denominator * op2.numerator;
+		return Fraction(num, den);
 	}
 
 	operator double() {
-	
+		return double(numerator / denominator);
 	}
 
 	Fraction& operator+=(Fraction fraction) {
