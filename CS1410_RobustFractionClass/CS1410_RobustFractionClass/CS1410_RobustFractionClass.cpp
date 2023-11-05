@@ -133,7 +133,13 @@ int main()
 	cout << "Multiplication:" << fraction1 * fraction2 << endl;
 	cout << "Division:" << fraction1 / fraction2 << endl;
 	cout << "Conversion:" << double(fraction1) << endl;
-	cout << "Conversion:" << double(fraction2) << endl << endl;
+	cout << "Conversion:" << double(fraction2) << endl;
+	if (double(fraction()) > double(fraction1)) {
+		cout << "Comparison:" << fraction() << " is greater than " << fraction1 << endl << endl;
+	}
+	else {
+		cout << "Comparison:" << fraction() << " is less than " << fraction1 << endl << endl;
+	}
 
 	Fraction fraction3(2, 3);
 	Fraction fraction4(1, 5);
@@ -159,4 +165,3 @@ int main()
 	cout << "Postfix Decrement:" << fraction5-- << endl;
 	cout << fraction5 << endl;
 }
-
