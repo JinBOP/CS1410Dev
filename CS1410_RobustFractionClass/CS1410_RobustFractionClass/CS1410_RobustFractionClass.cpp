@@ -24,9 +24,7 @@ private:
 		denominator /= gcd;
 	}
 public:
-	Fraction(int numerator, int denominator = 1) {
-	
-	}
+	Fraction(int n, int d) : numerator(n), denominator(d) {};
 
 	friend ostream& operator<<(ostream& out, const Fraction& fraction) {
 		if (fraction.denominator == 1) {
@@ -40,6 +38,7 @@ public:
 		else {
 			out << fraction.numerator << "/" << fraction.denominator;
 		}
+		return out;
 	}
 
 	friend istream& operator>>(istream& in, Fraction& fraction) {
@@ -74,11 +73,12 @@ public:
 	}
 
 	operator double() {
-		return double(numerator / denominator);
+		return double(numerator) / double(denominator);
 	}
 
 	Fraction& operator+=(Fraction fraction) {
-
+		*this = *this + fraction;
+		return *this;
 	}
 
 	Fraction& operator-=(Fraction fraction) {
@@ -87,11 +87,13 @@ public:
 	}
 
 	Fraction& operator*=(Fraction fraction) {
-
+		*this = *this * fraction;
+		return *this;
 	}
 
 	Fraction& operator/=(Fraction fraction) {
-
+		*this = *this / fraction;
+		return *this;
 	}
 
 	Fraction& operator++() {
@@ -113,7 +115,26 @@ public:
 
 int main()
 {
+	Fraction fraction1(1, 2);
+	Fraction fraction2(3, 4);
+	Fraction fraction3(2, 3);
+	Fraction fraction4(1, 5);
 
 
+	cout << fraction1 + fraction2 << endl;
+	cout << fraction1 - fraction2 << endl;
+	cout << fraction1 * fraction2 << endl;
+	cout << fraction1 / fraction2 << endl;
+	cout << double(fraction1) << endl;
+	cout << double(fraction2) << endl;
+
+	fraction3 += fraction4;
+	cout << fraction3 << endl;
+	fraction4 -= fraction3;
+	cout << fraction4 << endl;
+	fraction1 *= fraction3;
+	cout << fraction1 << endl;
+	fraction2 /= fraction4;
+	cout << fraction2 << endl;
 }
 
