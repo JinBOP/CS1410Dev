@@ -121,8 +121,10 @@ public:
 
 int main()
 {
+	Fraction fraction();
 	Fraction fraction1(1, 2);
 	Fraction fraction2(3, 4);
+	//cin >> fraction;
 
 	cout << "Fraction 1:" << fraction1 << endl;
 	cout << "Fraction 2:" << fraction2 << endl;
