@@ -97,19 +97,25 @@ public:
 	}
 
 	Fraction& operator++() {
-
+		this->numerator += denominator;
+		return *this;
 	}
 
 	Fraction operator++(int) {
-
+		Fraction copy(*this);
+		this->numerator += denominator;
+		return copy;
 	}
 
 	Fraction& operator--() {
-
+		this->numerator -= denominator;
+		return *this;
 	}
 
 	Fraction operator--(int) {
-
+		Fraction copy(*this);
+		this->numerator -= denominator;
+		return copy;
 	}
 };
 
@@ -117,24 +123,38 @@ int main()
 {
 	Fraction fraction1(1, 2);
 	Fraction fraction2(3, 4);
+
+	cout << "Fraction 1:" << fraction1 << endl;
+	cout << "Fraction 2:" << fraction2 << endl;
+	cout << "Addition:" << fraction1 + fraction2 << endl;
+	cout << "Subtraction:" << fraction1 - fraction2 << endl;
+	cout << "Multiplication:" << fraction1 * fraction2 << endl;
+	cout << "Division:" << fraction1 / fraction2 << endl;
+	cout << "Conversion:" << double(fraction1) << endl;
+	cout << "Conversion:" << double(fraction2) << endl << endl;
+
 	Fraction fraction3(2, 3);
 	Fraction fraction4(1, 5);
-
-
-	cout << fraction1 + fraction2 << endl;
-	cout << fraction1 - fraction2 << endl;
-	cout << fraction1 * fraction2 << endl;
-	cout << fraction1 / fraction2 << endl;
-	cout << double(fraction1) << endl;
-	cout << double(fraction2) << endl;
-
+	cout << "Fraction 3:" << fraction3 << endl;
+	cout << "Fraction 4:" << fraction4 << endl;
 	fraction3 += fraction4;
-	cout << fraction3 << endl;
+	cout <<  "Compound Addition:" << fraction3 << endl;
 	fraction4 -= fraction3;
-	cout << fraction4 << endl;
+	cout << "Compound Subtraction:" << fraction4 << endl;
 	fraction1 *= fraction3;
-	cout << fraction1 << endl;
+	cout << "Compound Multiplication:" << fraction1 << endl;
 	fraction2 /= fraction4;
-	cout << fraction2 << endl;
+	cout << "Compound Division:" << fraction2 << endl << endl;
+
+	Fraction fraction5(4, 9);
+	cout << "Fraction 5:" << fraction5 << endl;
+	cout << "Prefix Increment:" << ++fraction5 << endl;
+	cout << fraction5 << endl;
+	cout << "Postfix Increment:" << fraction5++ << endl;
+	cout << fraction5 << endl;
+	cout << "Prefix Decrement:" << --fraction5 << endl;
+	cout << fraction5 << endl;
+	cout << "Postfix Decrement:" << fraction5-- << endl;
+	cout << fraction5 << endl;
 }
 

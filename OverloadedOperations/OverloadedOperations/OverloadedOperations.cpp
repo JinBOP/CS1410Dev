@@ -59,7 +59,7 @@ public:
 		return *this;
 	}
 
-	Time operator++(int) {	// Suffix Notation
+	Time operator++(int) {	// Postfix Notation
 		Time copy(int(*this));
 		this->hours += 1;
 		return copy;
