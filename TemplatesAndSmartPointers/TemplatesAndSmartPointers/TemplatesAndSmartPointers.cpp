@@ -68,21 +68,17 @@ private:
 public:
 	Ant(string name, int workload) : name(name), workload(workload) {}	// Default Constructor
 	
-	friend ostream& operator<<(ostream & out, const Ant ant) {	// Overloaded Insertion Operator for ease of printing Objects
+	friend ostream& operator<<(ostream& out, const Ant ant) {	// Overloaded Insertion Operator for ease of printing Objects
 		out << ant.name << " (" << ant.workload << ") ";
 		return out;
 	}
+
+	friend Ant operator+(const Ant ant1, const Ant ant2) {	// Overloaded Addition Operator for adding Variables using Template
+		return Ant(ant1.name + ", " + ant2.name, ant1.workload + ant2.workload);
+	}
 };
 
-int add(int a, int b) {
-	return a + b;
-}
-
-double add(double a, double b) {
-	return a + b;
-}
-
-template <typename T> // 'T' is the filler Variable similar to 'i' in an Iteration Loop
+template <typename T> // 'T' is the placeholder Variable similar to 'i' in an Iteration Loop
 T add(T a, T b) {	// add Function that works with almost any Object
 	return a + b;
 }
@@ -107,4 +103,8 @@ int main()
 
 	cout << add(2, 3) << endl;
 	cout << add(4.5, 8.9) << endl;
+	Ant worker("worker", 15);
+	Ant soldier("soldier", 10);
+	cout << add(worker, soldier) << endl;
+	cout << add('a', 'c') << endl;
 }
