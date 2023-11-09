@@ -22,6 +22,19 @@ T Power(T x,int n) {	// Integer Power Template Function
 	return p;
 }
 
+long Factorial(int n) {	// Long Factorial Function
+	if (n == 0 || n == 1) {
+		return 1;
+	}
+	else {
+		int x = n;
+		for (int i = 1; i < n; i++) {
+			x *= (n - i);
+		}
+		return x;
+	}
+}
+
 int main()
 {
 	// Absolute Value
@@ -42,7 +55,13 @@ int main()
 	cout << "My Power(-4, 6):" << Power(-4, 6) << endl;
 	cout << "std::pow(-4, 6):" << pow(-4, 6) << endl;
 	cout << "My Power(10, 1):" << Power(10, 1) << endl;
-	cout << "std::pow(10, 1):" << pow(10, 1) << endl;
+	cout << "std::pow(10, 1):" << pow(10, 1) << endl << endl;
+
+	// Factorial
+	cout << "My Factorial(0):" << Factorial(0) << endl;
+	cout << "My Factorial(1):" << Factorial(1) << endl;
+	cout << "My Factorial(2):" << Factorial(2) << endl;
+	cout << "My Factorial(3):" << Factorial(3) << endl << endl;
 
 }
 
