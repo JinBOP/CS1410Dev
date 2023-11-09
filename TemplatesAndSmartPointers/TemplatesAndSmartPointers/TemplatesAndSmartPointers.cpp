@@ -1,5 +1,6 @@
 #include <iostream>
 #include <algorithm>
+#include <memory>	// used for premade SmartPointers
 using namespace std;
 
 void PrintNumberSet(int set[], int size) {	// Function for printing out the given Array of data
@@ -41,6 +42,23 @@ public:
 	}
 };
 
+class Ants {
+private:
+	string name;
+public:
+	Ants(string name) : name(name) { // Constructor
+		cout << "Creating" << name << endl;
+	}
+
+	~Ants() {	// Destructor
+		cout << "Deleting" << name << endl;
+	}
+
+	string GetName() {
+		return name;
+	}
+};
+
 void PrintSet(Word set[], int size) {
 	for (int i = 0; i < size; i++) {
 		cout << set[i].GetWord() << "(" << set[i].GetScore() << ") ";
@@ -78,6 +96,26 @@ public:
 	}
 };
 
+template<typename A>
+class SmartPointer {	// smartpointer for Ants class
+private:
+	A* pointer;
+public:
+	explicit SmartPointer(Ants* pointer = nullptr) : pointer(pointer) {}	// Constructor
+
+	~SmartPointer() {	// Descrutctor
+		delete pointer;
+	}
+
+	A& operator*() {	// Overloaded dereference operator
+		return *pointer;
+	}
+
+	A* operator->() {	// Overloaded arrow operator
+		return pointer;
+	}
+};
+
 template <typename T> // 'T' is the placeholder Variable similar to 'i' in an Iteration Loop
 T add(T a, T b) {	// add Function that works with almost any Object
 	return a + b;
@@ -107,4 +145,27 @@ int main()
 	Ant soldier("soldier", 10);
 	cout << add(worker, soldier) << endl;
 	cout << add('a', 'c') << endl;
+
+	// Traditional Pointers: 
+	Ants* ant = new Ants("Feeder");
+	cout << ant->GetName() << endl;		// arrow access
+	cout << (*ant).GetName() << endl;	// dereference and dot access
+	delete ant;							// clearing Object from the Heap
+	
+	// Smart Pointers:
+	SmartPointer<Ants> smartants(new Ants("Fire Ant"));
+	cout << smartants->GetName() << endl;	// arrow access
+	cout << (*smartants).GetName() << endl;	// dereference and dot access
+
+	// Unique Pointers:
+	unique_ptr<Ants> uniqueants(new Ants("Bullet Ant"));
+	cout << uniqueants->GetName() << endl;
+
+	// Shared Pointers:
+	shared_ptr<Ants> shared1ants(new Ants("Flying Ant"));
+	cout << shared1ants->GetName() << endl;
+	cout << shared1ants.use_count() << endl;	// .use_count keeps track of how many instances of a specific Shared Pointer there are
+	shared_ptr<Ants> shared2ants = shared1ants;
+	cout << shared2ants->GetName() << endl;
+	cout << shared1ants.use_count() << endl;
 }

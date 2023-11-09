@@ -1,6 +1,6 @@
 #include <iostream>
+#include <memory>
 using namespace std;
-
 
 class Ant {
 private:
@@ -22,13 +22,15 @@ public:
 template<typename T>
 struct Node {
 	T data;
-	Node<T>* nextpointer;
+	//Node<T>* nextpointer;	// Traditional Pointer
+	shared_ptr<Node<T>> nextpointer;	// Smart Pointer
 };
 
 template<typename T>
 class Stack {
 private:
-	Node<T>* toppointer;	// used for keeping track of the Node currently at the top of the Stack
+	//Node<T>* toppointer;	// Traditional Pointer | used for keeping track of the Node currently at the top of the Stack
+	shared_ptr<Node<T>> toppointer;	// Smart Pointer
 public:
 	Stack() {	// Constructor
 		toppointer = nullptr;
@@ -41,7 +43,8 @@ public:
 	}
 
 	void Push(T data) {	// adds data to the Stack
-		Node<T>* nodepointer = new Node<T>{ data,nullptr };	// creates a new Node
+		//Node<T>* nodepointer = new Node<T>{ data,nullptr };	// Traditional Pointer | creates a new Node
+		shared_ptr<Node<T>> nodepointer(new Node<T>{ data, nullptr });	// Smart Pointer
 		if (IsEmpty()) {	// if empty, add new Node
 			toppointer = nodepointer;
 		}
@@ -58,9 +61,10 @@ public:
 	// remove the top item
 	void Pop() {
 		if (!IsEmpty()) {
-			Node<T>* temp = toppointer;	// stores toppointer as temp
+			//Node<T>* temp = toppointer;	// Traditional Pointer | stores toppointer as temp
+			shared_ptr<Node<T>> temp = toppointer;	// Smart Pointer
 			toppointer = toppointer->nextpointer;	// moves toppointer to next Node
-			delete temp;	// Delete "old" Node
+			//delete temp;	// Delete "old" Node
 		}
 	}
 
@@ -76,7 +80,8 @@ public:
 
 template<typename T>
 ostream& operator<<(ostream& out, const Stack<T>& stack) {
-	Node<T>* current = stack.toppointer;
+	//Node<T>* current = stack.toppointer;
+	shared_ptr<Node<T>> current = stack.toppointer;
 	while (current != nullptr) {
 		out << current->data << " ";
 		current = current->nextpointer;
@@ -87,11 +92,22 @@ ostream& operator<<(ostream& out, const Stack<T>& stack) {
 int main()
 {
 	Stack<string> fruitstack;
-
 	fruitstack.Push("Apple");
 	fruitstack.Push("Banana");
 	fruitstack.Push("Cantelope");
 	fruitstack.Push("Durian");
-
 	cout << fruitstack << endl;
+
+	Stack<int> numberstack;
+	numberstack.Push(2);
+	numberstack.Push(3);
+	numberstack.Push(6);
+	numberstack.Push(18);
+	cout << numberstack << endl;
+
+	Stack<Ant> antstack;
+	antstack.Push(Ant("Worker", 15));
+	antstack.Push(Ant("Soldier", 10));
+	antstack.Push(Ant("Queen", 100));
+	cout << antstack << endl;
 }
