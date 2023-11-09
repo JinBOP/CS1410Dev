@@ -19,16 +19,16 @@ public:
 	}
 };
 
-
-
+template<typename T>
 struct Node {
-	string data;
-	Node* nextpointer;
+	T data;
+	Node<T>* nextpointer;
 };
 
+template<typename T>
 class Stack {
 private:
-	Node* toppointer;	// used for keeping track of the Node currently at the top of the Stack
+	Node<T>* toppointer;	// used for keeping track of the Node currently at the top of the Stack
 public:
 	Stack() {	// Constructor
 		toppointer = nullptr;
@@ -40,8 +40,8 @@ public:
 		}
 	}
 
-	void Push(string data) {	// adds data to the Stack
-		Node* nodepointer = new Node{ data,nullptr };	// creates a new Node
+	void Push(T data) {	// adds data to the Stack
+		Node<T>* nodepointer = new Node<T>{ data,nullptr };	// creates a new Node
 		if (IsEmpty()) {	// if empty, add new Node
 			toppointer = nodepointer;
 		}
@@ -51,14 +51,14 @@ public:
 		}
 	}
 
-	string Peek() {	// looks at the top item
+	T Peek() {	// looks at the top item
 		return toppointer->data;
 	}
 
 	// remove the top item
 	void Pop() {
 		if (!IsEmpty()) {
-			Node* temp = toppointer;	// stores toppointer as temp
+			Node<T>* temp = toppointer;	// stores toppointer as temp
 			toppointer = toppointer->nextpointer;	// moves toppointer to next Node
 			delete temp;	// Delete "old" Node
 		}
@@ -70,11 +70,13 @@ public:
 	}
 
 	// look at all items in the Stack
-	friend ostream& operator<<(ostream& out, const Stack& stack);
+	template<typename T>
+	friend ostream& operator<<(ostream& out, const Stack<T>& stack);
 };
 
-ostream& operator<<(ostream& out, const Stack& stack) {
-	Node* current = stack.toppointer;
+template<typename T>
+ostream& operator<<(ostream& out, const Stack<T>& stack) {
+	Node<T>* current = stack.toppointer;
 	while (current != nullptr) {
 		out << current->data << " ";
 		current = current->nextpointer;
@@ -84,7 +86,7 @@ ostream& operator<<(ostream& out, const Stack& stack) {
 
 int main()
 {
-	Stack fruitstack;
+	Stack<string> fruitstack;
 
 	fruitstack.Push("Apple");
 	fruitstack.Push("Banana");
