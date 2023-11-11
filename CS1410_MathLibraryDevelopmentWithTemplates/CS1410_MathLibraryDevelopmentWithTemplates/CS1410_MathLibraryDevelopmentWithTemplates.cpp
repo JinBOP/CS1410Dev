@@ -35,6 +35,35 @@ long Factorial(int n) {	// Long Factorial Function
 	}
 }
 
+template<typename T>
+double SquareRoot(T a) {	// Square Root Template Function
+	
+	if (a == 0) {
+		return 0;
+	}
+	else if (a < 0) {
+		return nan("");
+	}
+	else {
+		T n = a;	// sets the starting estimate to the parameter number
+		T x;		// tracks the current estimate value
+		T e;		// tracks how close the estimate is to an acceptable margin
+		int c = 0;	// tracks the number of estimate attempts to keep program from getting stuck
+		do {
+			x = (n + (a / n)) / 2;
+			n = x;
+			if ((e = a - x * x) < 0) {
+				e = (a - x * x) * -1;
+			}
+			else {
+				e = a - x * x;
+			}
+			c++;
+		} while (e > 0.00001 && c < 100);
+		return x;
+	}
+}
+
 int main()
 {
 	// Absolute Value
@@ -63,5 +92,14 @@ int main()
 	cout << "My Factorial(2):" << Factorial(2) << endl;
 	cout << "My Factorial(3):" << Factorial(3) << endl << endl;
 
+	// Square Root
+	cout << "My SquareRoot(9):" << SquareRoot(9) << endl;
+	cout << "std::sqrt(9):" << sqrt(9) << endl;
+	cout << "My SquareRoot(0):" << SquareRoot(0) << endl;
+	cout << "std::sqrt(0):" << sqrt(0) << endl;
+	cout << "My SquareRoot(-9):" << SquareRoot(-9) << endl;
+	cout << "std::sqrt(-9):" << sqrt(-9) << endl;
+	cout << "My SquareRoot(100):" << SquareRoot(100) << endl;
+	cout << "std::sqrt(100):" << sqrt(100) << endl;
+	
 }
-
