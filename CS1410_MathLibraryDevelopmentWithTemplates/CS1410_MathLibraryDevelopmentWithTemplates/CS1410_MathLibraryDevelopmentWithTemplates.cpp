@@ -69,15 +69,46 @@ double SquareRoot(T a) {	// Square Root Template Function
 	}
 }
 
-double Pi() {
+double Pi() {	// Pi Function
 	double x = 0.0000000000;
-	for (int i = 0; i < 15; i++) {
+	for (int i = 0; i < 15; i++) {	// BBP Algorithm
 		x += ((1.0000000000 / Power(16, i)) * ((4.00000000000 / ((8.0000000000 * i) + 1.0000000000)) - (2.0000000000 / ((8.0000000000 * i) + 4.0000000000)) - (1.0000000000 / ((8.0000000000 * i) + 5.0000000000)) - (1.0000000000 / ((8.0000000000 * i) + 6.0000000000))));
 	}
 	return x;
 }
-
 double P = Pi();
+
+double a;	// Variable for tracking the total
+template<typename T>
+double Sine(T x) {	// Sine Template Funciton
+	static_cast<double>(x);	// forces the given number into a Double
+	int s;	// sign Variable for tracking if given number is positive or negative
+	
+	if (x < 0) {
+		s = -1;
+		x *= -1;
+	}
+	else {
+		s = 1; 
+	}
+
+	while (x > Pi()) {
+		x *= -1;
+		x -= Pi();
+	}
+
+	for (int i = 0.0; i < 9; i++) {	// Taylor Series
+		a += ((Power(-1.0, i)) / (Factorial((2.0 * i) + 1.0)) * (Power(x, ((2.0 * i) + 1.0))));
+	}
+
+	x *= s;
+	return a;
+}
+
+template<typename T>
+double Cosine(T x) {	// Cosine Template Function
+	return Sine((Pi() / 2) - x);
+}
 
 int main()
 {
@@ -119,5 +150,34 @@ int main()
 	
 	// Pi
 	cout << "My Pi():" << P << endl;
-	cout << "Pi: 3.1415926535" << endl;
+	cout << "Pi: 3.1415926535" << endl << endl;
+
+	// Sine
+	cout << "My Sine(-2):" << Sine(-2) << endl;
+	cout << "std::sin(-2):" << sin(-2) << endl;
+	cout << "My Sine(-1):" << Sine(-1) << endl;
+	cout << "std::sin(-1):" << sin(-1) << endl;
+	cout << "My Sine(0):" << Sine(0) << endl;
+	cout << "std::sin(0):" << sin(0) << endl;
+	cout << "My Sine(1):" << Sine(1) << endl;
+	cout << "std::sin(1):" << sin(1) << endl;
+	cout << "My Sine(2):" << Sine(2) << endl;
+	cout << "std::sin(2):" << sin(2) << endl << endl;
+
+	// Cosine
+	cout << "My Cosine(-6):" << Cosine(-6) << endl;
+	cout << "std::cos(-6):" << cos(-6) << endl;
+	cout << "My Cosine(-4):" << Cosine(-4) << endl;
+	cout << "std::cos(-4):" << cos(-4) << endl;
+	cout << "My Cosine(-2):" << Cosine(-2) << endl;
+	cout << "std::cos(-2):" << cos(-2) << endl;
+	cout << "My Cosine(0):" << Cosine(0) << endl;
+	cout << "std::cos(0):" << cos(0) << endl;
+	cout << "My Cosine(2):" << Cosine(2) << endl;
+	cout << "std::cos(2):" << cos(2) << endl;
+	cout << "My Cosine(4):" << Cosine(4) << endl;
+	cout << "std::cos(4):" << cos(4) << endl << endl;
+
+
+
 }
