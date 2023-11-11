@@ -15,11 +15,16 @@ T Absolute(T x) {	// Absolute Value Template Function
 double p;
 template<typename T>
 T Power(T x,int n) {	// Integer Power Template Function
-	p = x;
-	for (int i = 0; i < n - 1; i++) {
-		p *= x;
+	if (n == 0) {
+		return 1;
 	}
-	return p;
+	else {
+		p = x;
+		for (int i = 0; i < n - 1; i++) {
+			p *= x;
+		}
+		return p;
+	}
 }
 
 long Factorial(int n) {	// Long Factorial Function
@@ -64,6 +69,16 @@ double SquareRoot(T a) {	// Square Root Template Function
 	}
 }
 
+double Pi() {
+	double x = 0.0000000000;
+	for (int i = 0; i < 15; i++) {
+		x += ((1.0000000000 / Power(16, i)) * ((4.00000000000 / ((8.0000000000 * i) + 1.0000000000)) - (2.0000000000 / ((8.0000000000 * i) + 4.0000000000)) - (1.0000000000 / ((8.0000000000 * i) + 5.0000000000)) - (1.0000000000 / ((8.0000000000 * i) + 6.0000000000))));
+	}
+	return x;
+}
+
+double P = Pi();
+
 int main()
 {
 	// Absolute Value
@@ -100,6 +115,9 @@ int main()
 	cout << "My SquareRoot(-9):" << SquareRoot(-9) << endl;
 	cout << "std::sqrt(-9):" << sqrt(-9) << endl;
 	cout << "My SquareRoot(100):" << SquareRoot(100) << endl;
-	cout << "std::sqrt(100):" << sqrt(100) << endl;
+	cout << "std::sqrt(100):" << sqrt(100) << endl << endl;
 	
+	// Pi
+	cout << "My Pi():" << P << endl;
+	cout << "Pi: 3.1415926535" << endl;
 }
