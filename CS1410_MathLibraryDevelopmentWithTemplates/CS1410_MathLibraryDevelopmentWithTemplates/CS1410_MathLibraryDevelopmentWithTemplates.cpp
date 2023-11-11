@@ -1,5 +1,6 @@
 #include <iostream>
 #include <cmath>
+#include <iomanip>
 using namespace std;
 
 template<typename T>
@@ -110,74 +111,62 @@ double Cosine(T x) {	// Cosine Template Function
 	return Sine((Pi() / 2) - x);
 }
 
+template<typename T>
+double Tangent(T x) {	// Tangent Template Function
+	return Sine(x) / Cosine(x);
+}
+
 int main()
 {
+	std::cout << std::setprecision(20);	// included for greater precision
+
 	// Absolute Value
 	cout << "My Absolute(-1):" << Absolute(-1) << endl;
-	cout << "std::abs(-1):" << abs(-1) << endl;
-	cout << "My Absolute(12):" << Absolute(12) << endl;
-	cout << "std::abs(12):" << abs(12) << endl;
-	cout << "My Absolute(0):" << Absolute(0) << endl;
-	cout << "std::abs(0):" << abs(0) << endl;
-	cout << "My Absolute(-3.6):" << Absolute(-3.6) << endl;
-	cout << "std::abs(-3.6):" << abs(-3.6) << endl << endl;
+	cout << "std::abs(-1):" << abs(-1) << endl << endl;
 
 	// Integer Power
 	cout << "My Power(2,2):" << Power(2, 2) << endl;
-	cout << "std::pow(2,2):" << pow(2, 2) << endl;
-	cout << "My Power(1.5, 5):" << Power(1.5, 5) << endl;
-	cout << "std::pow(1.5, 5):" << pow(1.5, 5) << endl;
-	cout << "My Power(-4, 6):" << Power(-4, 6) << endl;
-	cout << "std::pow(-4, 6):" << pow(-4, 6) << endl;
-	cout << "My Power(10, 1):" << Power(10, 1) << endl;
-	cout << "std::pow(10, 1):" << pow(10, 1) << endl << endl;
+	cout << "std::pow(2,2):" << pow(2, 2) << endl << endl;
 
 	// Factorial
 	cout << "My Factorial(0):" << Factorial(0) << endl;
 	cout << "My Factorial(1):" << Factorial(1) << endl;
-	cout << "My Factorial(2):" << Factorial(2) << endl;
-	cout << "My Factorial(3):" << Factorial(3) << endl << endl;
+	cout << "My Factorial(2):" << Factorial(2) << endl << endl;
 
 	// Square Root
 	cout << "My SquareRoot(9):" << SquareRoot(9) << endl;
 	cout << "std::sqrt(9):" << sqrt(9) << endl;
+	cout << "My SquareRoot(6.75f):" << SquareRoot(6.75f) << endl;
+	cout << "My SquareRoot(15.99):" << SquareRoot(15.99) << endl;
+	cout << "My SquareRoot('a'):" << SquareRoot('a') << endl;
 	cout << "My SquareRoot(0):" << SquareRoot(0) << endl;
-	cout << "std::sqrt(0):" << sqrt(0) << endl;
-	cout << "My SquareRoot(-9):" << SquareRoot(-9) << endl;
-	cout << "std::sqrt(-9):" << sqrt(-9) << endl;
-	cout << "My SquareRoot(100):" << SquareRoot(100) << endl;
-	cout << "std::sqrt(100):" << sqrt(100) << endl << endl;
+	cout << "My SquareRoot(-1):" << SquareRoot(-1) << endl << endl;
 	
 	// Pi
 	cout << "My Pi():" << P << endl;
-	cout << "Pi: 3.1415926535" << endl << endl;
+	cout << "Pi: 3.14159265358979323846" << endl << endl;
 
 	// Sine
-	cout << "My Sine(-2):" << Sine(-2) << endl;
-	cout << "std::sin(-2):" << sin(-2) << endl;
-	cout << "My Sine(-1):" << Sine(-1) << endl;
-	cout << "std::sin(-1):" << sin(-1) << endl;
-	cout << "My Sine(0):" << Sine(0) << endl;
-	cout << "std::sin(0):" << sin(0) << endl;
-	cout << "My Sine(1):" << Sine(1) << endl;
-	cout << "std::sin(1):" << sin(1) << endl;
 	cout << "My Sine(2):" << Sine(2) << endl;
-	cout << "std::sin(2):" << sin(2) << endl << endl;
+	cout << "std::sin(2):" << sin(2) << endl;
+	cout << "My Sine(5.25f):" << Sine(5.25f) << endl;
+	cout << "My Sine(Pi()):" << Sine(Pi()) << endl;
+	cout << "My Sine(-5*Pi()/2):" << Sine(-5 * Pi() / 2) << endl;
+	cout << "My Sine('a'):" << Sine('a') << endl << endl;
 
 	// Cosine
-	cout << "My Cosine(-6):" << Cosine(-6) << endl;
-	cout << "std::cos(-6):" << cos(-6) << endl;
-	cout << "My Cosine(-4):" << Cosine(-4) << endl;
-	cout << "std::cos(-4):" << cos(-4) << endl;
-	cout << "My Cosine(-2):" << Cosine(-2) << endl;
-	cout << "std::cos(-2):" << cos(-2) << endl;
-	cout << "My Cosine(0):" << Cosine(0) << endl;
-	cout << "std::cos(0):" << cos(0) << endl;
 	cout << "My Cosine(2):" << Cosine(2) << endl;
 	cout << "std::cos(2):" << cos(2) << endl;
-	cout << "My Cosine(4):" << Cosine(4) << endl;
-	cout << "std::cos(4):" << cos(4) << endl << endl;
-
-
-
+	cout << "My Cosine(5.25f):" << Cosine(5.25f) << endl;
+	cout << "My Cosine(Pi()):" << Cosine(Pi()) << endl;
+	cout << "My Cosine(-5*Pi()/2):" << Cosine(-5 * Pi() / 2) << endl;
+	cout << "My Cosine('a'):" << Cosine('a') << endl << endl;
+	
+	// Tangent
+	cout << "My Tangent(2):" << Tangent(2) << endl;
+	cout << "std::tan(2):" << tan(2) << endl;
+	cout << "My Tangent(5.25f):" << Tangent(5.25f) << endl;
+	cout << "My Tangent(Pi()):" << Tangent(Pi()) << endl;
+	cout << "My Tangent(-5*Pi()/2):" << Tangent(-5 * Pi() / 2) << endl;
+	cout << "My Tangent('a'):" << Tangent('a') << endl << endl;
 }
