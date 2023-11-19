@@ -5,8 +5,8 @@
 #include <vector>
 using namespace std;
 
-string LeaderboardNames = "leaderboard/names.txt";		// file containing the names of the top players
-string LeaderboardScores = "leaderboard/scores.txt";	// file containing the scores of the top players
+string LeaderboardNames = "leaderboard/names.dat";		// file containing the names of the top players
+string LeaderboardScores = "leaderboard/scores.dat";	// file containing the scores of the top players
 string playername;
 int guesses;
 
@@ -108,10 +108,10 @@ void UpdateLeaderboard(vector<string> name, vector<string> score) {	// updates t
 	ofstream lsout(LeaderboardScores, ios::out);
 	for (int i = 0; i < 5; i++) {
 		if (guesses > stoi(score[i])) {
-			//for (int i = 0; i < 5; i++) {
-				//lnout << name[i];
-				//lsout << score[i];
-			//}
+			for (int i = 0; i < 5; i++) {
+				lnout << name[i];
+				lsout << score[i];
+			}
 			lnout << playername << endl;
 			lsout << guesses << endl;
 		}
