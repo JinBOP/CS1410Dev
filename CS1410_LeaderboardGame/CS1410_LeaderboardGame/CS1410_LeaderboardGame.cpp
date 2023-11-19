@@ -7,10 +7,12 @@ using namespace std;
 
 string LeaderboardNames = "leaderboard/names.txt";		// file containing the names of the top players
 string LeaderboardScores = "leaderboard/scores.txt";	// file containing the scores of the top players
+string playername;
 int guesses;
 
 void DisplayLeaderboard(vector<string> name, vector<string> score);	// function prototype for displaying leaderboard
 bool CoinTossGame(char choice);	// function prototype for handling the game
+void UpdateLeaderboard(vector<string> name, vector<string> score);
 
 int main()
 {
@@ -44,15 +46,31 @@ int main()
 	}
 	ScoresIn.close();
 
-	DisplayLeaderboard(LeadersName, LeadersScore);
+	DisplayLeaderboard(LeadersName, LeadersScore);	// displays scoreboard before starting game
 
 	char choice;
 	bool result;
-	do {
+	do {	// continues game until player guesses incorrectly
 		cout << "(H)eads or (T)ails? ";
 		cin >> choice;
 		result = CoinTossGame(toupper(choice));
 	} while (result != false);
+
+	int tests;
+	do {	// tests player score against current leaderboard to see if they acheived a new high score
+		for (int i = 0; i < 5; i++) {
+			tests = i;
+			if (guesses > stoi(LeadersScore[i])) {
+				cout << "Enter name for Leaderboard (must be 6 total characters):";	// prompts player for name input for adding to the leaderboard
+				cin >> playername;
+				cout << endl << endl;
+			}
+		}
+	} while (tests < 5 && guesses > stoi(LeadersScore[tests]));
+
+	UpdateLeaderboard(LeadersName, LeadersScore);	// updates leaderboard with new information
+
+	DisplayLeaderboard(LeadersName, LeadersScore);	// displays new leaderboard
 }
 
 void DisplayLeaderboard(vector<string> name, vector<string> score) {	// displays the current leaderboard to the player
@@ -65,7 +83,7 @@ void DisplayLeaderboard(vector<string> name, vector<string> score) {	// displays
 	cout << endl;
 }
 
-bool CoinTossGame(char choice) {
+bool CoinTossGame(char choice) {	// "tosses a coin" do determine if the player's guess (Heads or Tails) was correct
 	char coin;
 	int face = rand() % 10 + 1;
 
@@ -78,11 +96,32 @@ bool CoinTossGame(char choice) {
 
 	if (choice == coin) {
 		guesses++;
-		cout << "Correct!" << endl << endl;
+		cout << "Correct!" << endl << "Score:" << guesses << endl << endl;
 		return true;
 	}
 	else {
-		cout << "Wrong!" << endl << endl;
+		cout << "Wrong!" << endl << "Final Score:" << guesses << endl << endl;
 		return false;
+	}
+}
+
+void UpdateLeaderboard(vector<string> name, vector<string> score) {	// updates the leaderboard
+	ofstream lnout(LeaderboardNames, ios::out);
+	ofstream lsout(LeaderboardScores, ios::out);
+	for (int i = 0; i < 5; i++) {
+		if (guesses > stoi(score[i])) {
+			//for (int i = 0; i < 5; i++) {
+				//lnout << name[i];
+				//lsout << score[i];
+			//}
+			lnout << playername << endl;
+			lsout << guesses << endl;
+		}
+		else {
+			lnout << name[i] << endl;
+			lsout << score[i] << endl;
+		}
+		lnout.close();
+		lsout.close();
 	}
 }
