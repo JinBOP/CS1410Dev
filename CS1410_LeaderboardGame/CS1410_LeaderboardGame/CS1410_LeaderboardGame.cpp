@@ -56,17 +56,15 @@ int main()
 		result = CoinTossGame(toupper(choice));
 	} while (result != false);
 
-	int tests;
-	do {	// tests player score against current leaderboard to see if they acheived a new high score
-		for (int i = 0; i < 5; i++) {
-			tests = i;
-			if (guesses > stoi(LeadersScore[i])) {
-				cout << "Enter name for Leaderboard (must be 6 total characters):";	// prompts player for name input for adding to the leaderboard
-				cin >> playername;
-				cout << endl << endl;
-			}
+	int tests = 0;	// tests player score against current leaderboard to see if they acheived a new high score
+	for (int i = 0; i < 5; i++) {
+		if (guesses > stoi(LeadersScore[i]) && tests == 0) {
+			cout << "Enter name for Leaderboard (must be 6 total characters):";	// prompts player for name input for adding to the leaderboard
+			cin >> playername;
+			cout << endl << endl;
+			tests++;
 		}
-	} while (tests < 5 && guesses > stoi(LeadersScore[tests]));
+	}
 
 	UpdateLeaderboard(LeadersName, LeadersScore);	// updates leaderboard with new information
 
