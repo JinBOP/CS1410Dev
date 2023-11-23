@@ -8,11 +8,15 @@ char board[8][8]{};	// 8x8 game board
 
 void ResetBoard();	// board reset function prototype
 void PrintBoard();	// board formatting function prototype
+int CountFlips(char, int, int, int, int);	
+int CountFlips(char, int, int);
 
 int main()
 {
 	ResetBoard();
 	PrintBoard();
+	cout << CountFlips(black, 2, 3) << endl;
+	cout << CountFlips(white, 4, 2) << endl;
 }
 
 void ResetBoard() {	// function that sets up the game board at the beginning of a new game
@@ -50,4 +54,42 @@ void PrintBoard() {	// function that displays a formatted version of the game bo
 		}
 		cout << endl;
 	}
+}
+
+int CountFlips(char piece, int row, int col, int y, int x) {
+	if (board[row][col] != blank) { // handles invalid move where space is already taken
+		return 0;
+	}
+	else {
+		int tally = 0;
+		row += y;
+		col += x;
+
+		while (row >= 0 && row < 8 && col >= 0 && col < 8) {
+			if (board[row][col] == blank) {	// handles blank space next to placed piece
+				return 0;
+			}
+			else if (board[row][col] != piece) {	// uptics the tally when opposite piece is found
+				tally++;
+			}
+			else {	// returns total tally when same colored piece found
+				return tally;
+			}
+			row += y;
+			col += x;
+		}
+		// returns 0 when reaching edge of game board
+		return 0;
+	}
+}
+
+int CountFlips(char piece, int row, int col) {
+	int tally = 0;
+
+	for (int y = -1; y <= 1; y++) {
+		for (int x = -1; x <= 1; x++) {
+			tally += CountFlips(piece, row, col, y, x);
+		}
+	}
+	return tally;
 }
