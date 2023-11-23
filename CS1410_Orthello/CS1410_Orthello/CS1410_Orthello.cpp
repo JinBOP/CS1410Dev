@@ -17,6 +17,8 @@ int CountFlips(char, int, int, int, int);
 int CountFlips(char, int, int);
 void FlipPieces(char, int, int);	// piece flipping function prototype
 GridSquare BestMove(char);
+int GetScore(char);	// score function prototype
+
 int main()
 {
 	ResetBoard();
@@ -55,7 +57,7 @@ int main()
 			cout << "\nNo valid moves available for player" << endl;
 			playeravailable = false;
 		}
-		
+
 		GridSquare ComputerMove = BestMove(white);
 		if (ComputerMove.row >= 0) {	// computer makes a move if valid move is available
 			cout << "\nComputer Move: ";
@@ -69,6 +71,10 @@ int main()
 
 		system("pause");	// Windows command
 	} while (playeravailable || computeravailable);
+
+	string winner = (GetScore(black) > GetScore(white)) ? "Player" : "Computer";
+	cout << endl << winner << " wins!" << endl;
+	system("pause");	// Windows command
 }
 
 void ResetBoard() {	// clears and builds board for new game
@@ -85,6 +91,9 @@ void ResetBoard() {	// clears and builds board for new game
 
 void PrintBoard() {	// function that displays a formatted version of the game board to the player
 	system("cls");	// Windows command
+	cout << "Othello by Jin" << endl;
+	cout << "\nCurrent Score\n\nPlayer: " << GetScore(black);
+	cout << "\nComputer: " << GetScore(white) << endl << endl;
 
 	for (int row = 0; row < 9; row++) {
 		for (int col = 0; col < 9; col++) {
@@ -183,4 +192,16 @@ GridSquare BestMove(char piece) {	// structure funciton for computer to decide b
 		}
 	}
 	return best;
+}
+
+int GetScore(char piece) {
+	int score = 0;
+	for (int row = 0; row < 9; row++) {
+		for (int col = 0; col < 9; col++) {
+			if (board[row][col] == piece) {
+				score++;
+			}
+		}
+	}
+	return score;
 }
