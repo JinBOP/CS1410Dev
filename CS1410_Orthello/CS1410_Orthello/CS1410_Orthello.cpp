@@ -6,50 +6,77 @@ const char white = char(2);	// white smiley face Windows character
 const char blank = char(32);
 char board[8][8]{};	// 8x8 game board
 
+struct GridSquare {	// computer move structure
+	int row = -1;
+	int col = -1;
+};
+
 void ResetBoard();	// board reset function prototype
 void PrintBoard();	// board formatting function prototype
 int CountFlips(char, int, int, int, int);	
 int CountFlips(char, int, int);
 void FlipPieces(char, int, int);	// piece flipping function prototype
+GridSquare BestMove(char);
 int main()
 {
 	ResetBoard();
-	PrintBoard();
-	cout << CountFlips(black, 2, 3) << endl;
-	cout << CountFlips(white, 4, 2) << endl;
+	bool computeravailable, playeravailable;
 
-	char col;
-	int row;
-	int valid = 0;
+	do {
+		computeravailable = true, playeravailable = true;
+		PrintBoard();
 
-	do {	// allows for player input for them to make a move
-		cout << "\nYour Move: ";
-		cin >> col >> row;
+		char col;
+		int row;
+		int valid = (BestMove(black).row >= 0);
 
-		if (cin.fail()) {
-			cin.clear();
+		if (valid) {
+			do {	// allows for player input for them to make a move
+				cout << "\nYour Move: ";
+				cin >> col >> row;
+
+				if (cin.fail()) {
+					cin.clear();
+				}
+
+				col = int(col - 97);
+				row = row - 1;
+
+				valid = CountFlips(black, row, col);
+				if (!valid) {
+					cout << "Invalid move!";
+				}
+			} while (!valid);
+
+			FlipPieces(black, row, col);
+			PrintBoard();
+		}
+		else {	// skips turn when no valid moves available
+			cout << "\nNo valid moves available for player" << endl;
+			playeravailable = false;
+		}
+		
+		GridSquare ComputerMove = BestMove(white);
+		if (ComputerMove.row >= 0) {	// computer makes a move if valid move is available
+			cout << "\nComputer Move: ";
+			cout << char(ComputerMove.col + 97) << ComputerMove.row + 1 << endl;
+			FlipPieces(white, ComputerMove.row, ComputerMove.col);
+		}
+		else {	// skips turn when no valid moves available 
+			cout << "\nNo valid moves available for computer" << endl;
+			computeravailable = false;
 		}
 
-		col = int(col - 97);
-		row = row - 1;
-
-		valid = CountFlips(black, row, col);
-		if (!valid) {
-			cout << "Invalid move!";
-		}
-	} while (!valid);
-
-	FlipPieces(black, row, col);
-	PrintBoard();
+		system("pause");	// Windows command
+	} while (playeravailable || computeravailable);
 }
 
-void ResetBoard() {	// function that sets up the game board at the beginning of a new game
+void ResetBoard() {	// clears and builds board for new game
 	for (int row = 0; row < 8; row++) {
 		for (int col = 0; col < 8; col++) {
 			board[row][col] = blank;
 		}
 	}
-	// places initial 4 pieces, 2 black and 2 white, in the center of the game board
 	board[3][3] = white;
 	board[3][4] = black;
 	board[4][3] = black;
@@ -118,7 +145,7 @@ int CountFlips(char piece, int row, int col) {	// tally tracker
 	return tally;
 }
 
-void FlipPieces(char piece, int row, int col) {
+void FlipPieces(char piece, int row, int col) {	// piece interaction function
 	for (int y = -1; y <= 1; y++) {
 		for (int x = -1; x <= 1; x++) {
 			if (CountFlips(piece, row, col, y, x)) {
@@ -138,4 +165,22 @@ void FlipPieces(char piece, int row, int col) {
 	}
 	// adds current piece
 	board[row][col] = piece;
+}
+
+GridSquare BestMove(char piece) {	// structure funciton for computer to decide best move available
+	GridSquare best;
+	int mostflipped = 0;
+
+	for (int row = 0; row < 8; row++) {
+		for (int col = 0; col < 8; col++) {
+			int currentflips = CountFlips(piece, row, col);
+
+			if (currentflips > mostflipped) {
+				mostflipped = currentflips;
+				best.row = row;
+				best.col = col;
+			}
+		}
+	}
+	return best;
 }
