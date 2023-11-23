@@ -10,13 +10,37 @@ void ResetBoard();	// board reset function prototype
 void PrintBoard();	// board formatting function prototype
 int CountFlips(char, int, int, int, int);	
 int CountFlips(char, int, int);
-
+void FlipPieces(char, int, int);	// piece flipping function prototype
 int main()
 {
 	ResetBoard();
 	PrintBoard();
 	cout << CountFlips(black, 2, 3) << endl;
 	cout << CountFlips(white, 4, 2) << endl;
+
+	char col;
+	int row;
+	int valid = 0;
+
+	do {	// allows for player input for them to make a move
+		cout << "\nYour Move: ";
+		cin >> col >> row;
+
+		if (cin.fail()) {
+			cin.clear();
+		}
+
+		col = int(col - 97);
+		row = row - 1;
+
+		valid = CountFlips(black, row, col);
+		if (!valid) {
+			cout << "Invalid move!";
+		}
+	} while (!valid);
+
+	FlipPieces(black, row, col);
+	PrintBoard();
 }
 
 void ResetBoard() {	// function that sets up the game board at the beginning of a new game
@@ -83,7 +107,7 @@ int CountFlips(char piece, int row, int col, int y, int x) {
 	}
 }
 
-int CountFlips(char piece, int row, int col) {
+int CountFlips(char piece, int row, int col) {	// tally tracker
 	int tally = 0;
 
 	for (int y = -1; y <= 1; y++) {
@@ -92,4 +116,26 @@ int CountFlips(char piece, int row, int col) {
 		}
 	}
 	return tally;
+}
+
+void FlipPieces(char piece, int row, int col) {
+	for (int y = -1; y <= 1; y++) {
+		for (int x = -1; x <= 1; x++) {
+			if (CountFlips(piece, row, col, y, x)) {
+				int currentrow = row;
+				int currentcol = col;
+
+				currentrow += y;
+				currentcol += x;
+
+				while (board[currentrow][currentcol] != piece) {
+					board[currentrow][currentcol] = piece;
+					currentrow += y;
+					currentcol += x;
+				}
+			}
+		}
+	}
+	// adds current piece
+	board[row][col] = piece;
 }
