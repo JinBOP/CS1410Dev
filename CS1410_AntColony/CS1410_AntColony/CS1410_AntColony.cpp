@@ -1,4 +1,5 @@
 #include <iostream>
+#include <vector>
 using namespace std;
 
 class Ant {	// Generic Ant Class
@@ -77,11 +78,32 @@ public:
 	}
 };
 
-//Composition
+
+// Aggregation
+class FoodPile {
+private:
+	int amount = 0;
+public:
+	FoodPile(int amount) {
+		this->amount = amount;
+	}
+
+	void AddFood(int amount) {
+		cout << "Adding " << amount << " food to pile" << endl;
+		this->amount = amount;
+	}
+};
+
+// Composition
 class Colony {
 private:
 	Queen queen2;
+	Soldier soldier2;
+	vector<Ant*> ants;
+	FoodPile* foodpile1 = nullptr;
 public:
+	Colony() : queen2("Queen"), soldier2("Soldier", 5) {}
+
 	void FeedQueen(int amount) {
 		queen2.Eat(amount);
 	}
@@ -89,13 +111,26 @@ public:
 	Queen& GetQueen() {
 		return queen2;
 	}
+
+	void SetFoodPile(FoodPile* foodpile) {
+		this->foodpile1 = foodpile;
+	}
+
+	void AddToPile(int quantity) {
+		if (foodpile1 == nullptr) {
+			cout << "No food found!" << endl;
+		}
+		else {
+			foodpile1->AddFood(quantity);
+		}
+	}
 };
 
 int main()
 {
 	// Ant Colony model
 
-	/* Inheritance(general to specific)
+	/* Inheritance (general to specific)
 	*  Relational Terms: parent/child or superclass/subclass or ancestor/descendant
 	*  Semantic Terms: is a, is like a, is a kind of, etc.
 	*  Directionality: unidirectional (one-way)
@@ -127,8 +162,9 @@ int main()
 	Transporter transporter1("Sugar Transporter", 9);
 	transporter1.Work(10);
 
-	/* Composition(one class exists as an integral part of another class)
+	/* Composition (one class exists as an integral part of another class)
 	*  Objects live and die together
+	*  a colony has a queen, and a queen can have no colony but a colony can't have no queen
 	*  Semantic Terms: has a, is a part of
 	*  Directionality: Unidirectional (one-way)
 	*  Binding Strength: strong/tight
@@ -140,4 +176,22 @@ int main()
 	Colony colony1;
 	colony1.FeedQueen(11);	// colony queen access needs to go through colony
 	colony1.GetQueen().Eat(12);
+
+	/* Aggregation (the parts do not need to be exclusive to the whole)
+	*  Objects can be swapped out
+	*  colony has a food pile, but both can work seperate and independently
+	*  Semantic Terms: has a, is a part of
+	*  Binding Strength: weak/loose
+	*  Lifetime: seperate
+	*  Sharing: not exclusive
+	*  UML Symbols: empty diamond
+	*/
+
+	colony1.AddToPile(13);
+	FoodPile foodpile2(14);
+	colony1.SetFoodPile(&foodpile2);
+	colony1.AddToPile(15);
+
+	/* Dependency 
+	*/
 }
