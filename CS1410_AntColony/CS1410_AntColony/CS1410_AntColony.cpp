@@ -2,6 +2,21 @@
 #include <vector>
 using namespace std;
 
+// Aggregation
+class FoodPile {
+private:
+	int amount = 0;
+public:
+	FoodPile(int amount) {
+		this->amount = amount;
+	}
+
+	void AddFood(int amount) {
+		cout << "Adding " << amount << " food to pile" << endl;
+		this->amount = amount;
+	}
+};
+
 class Ant {	// Generic Ant Class
 private:
 	int stamina = 0;
@@ -15,7 +30,7 @@ public:
 		cout << "Creating " << designation << endl;
 	}
 
-	void Eat(int amount) {
+	void Eat(int amount, FoodPile pile) {
 		cout << designation << " eats " << amount << " food" << endl;
 	}
 };
@@ -78,22 +93,6 @@ public:
 	}
 };
 
-
-// Aggregation
-class FoodPile {
-private:
-	int amount = 0;
-public:
-	FoodPile(int amount) {
-		this->amount = amount;
-	}
-
-	void AddFood(int amount) {
-		cout << "Adding " << amount << " food to pile" << endl;
-		this->amount = amount;
-	}
-};
-
 // Composition
 class Colony {
 private:
@@ -105,7 +104,7 @@ public:
 	Colony() : queen2("Queen"), soldier2("Soldier", 5) {}
 
 	void FeedQueen(int amount) {
-		queen2.Eat(amount);
+		//queen2.Eat(amount);
 	}
 
 	Queen& GetQueen() {
@@ -174,8 +173,14 @@ int main()
 	*/
 
 	Colony colony1;
+
+	colony1.AddToPile(13);
+	FoodPile* foodpile2 = new FoodPile(14);
+	colony1.SetFoodPile(foodpile2);
+	colony1.AddToPile(15);
+
 	colony1.FeedQueen(11);	// colony queen access needs to go through colony
-	colony1.GetQueen().Eat(12);
+	colony1.GetQueen().Eat(12, *foodpile2);
 
 	/* Aggregation (the parts do not need to be exclusive to the whole)
 	*  Objects can be swapped out
@@ -189,9 +194,15 @@ int main()
 
 	colony1.AddToPile(13);
 	FoodPile foodpile2(14);
-	colony1.SetFoodPile(&foodpile2);
+	colony1.SetFoodPile(foodpile2);
 	colony1.AddToPile(15);
 
-	/* Dependency 
+	/* Dependency (one of the functions depends on another class)
+	*  Ant uses the food pile to eat
+	*  Semantic Terms: depends on, uses a
+	*  Lifetime: seperate
+	*  Binding Strength: weak/loose
+	*  Sharing: not exclusive
+	*  UML Symbols: dotted or dashed arrow
 	*/
 }
