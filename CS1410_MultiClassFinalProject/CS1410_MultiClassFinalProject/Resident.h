@@ -2,19 +2,19 @@
 #include "Person.h"
 using namespace std;
 
-class Resident : public Person{
+class Resident /* : public Person */{
 private:
 	// inherited variables from Person class
-	Person homeaddress;
-	Person firstname;
-	Person middlename;
-	Person lastname;
+	string homeaddress;
+	string firstname;
+	string middlename;
+	string lastname;
 public:
 	// constructors
-	Resident(string firstname, string middlename, string lastname) : Person(firstname), Person(middlename), Person(lastname) {}
-	Resident(string firstname, string middlename, string lastname, string homeaddress) : Person(firstname), Person(middlename), Person(lastname), Person(homeaddress) {}
-	string Home(string firstname, string middlename, string lastname) {	// function to find an individual's home address according to their name
-		cout << firstname << " " << lastname << "'s home address is " << homeaddress << endl;
+	Resident(string firstname, string middlename, string lastname) : firstname(firstname), middlename(middlename), lastname(lastname) {}
+	Resident(string firstname, string middlename, string lastname, string homeaddress) : firstname(firstname), middlename(middlename), lastname(lastname), homeaddress(homeaddress) {}
+	void Home(string firstname, string middlename, string lastname) {	// function to find an individual's home address according to their name
+		cout << firstname << " " << lastname << "'s home address is homeaddress" << endl;
 	}
 };
 
