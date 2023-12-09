@@ -129,9 +129,11 @@
   <ItemGroup>
     <ClCompile Include="CS1410_MultiClassFinalProject.cpp" />
     <ClCompile Include="Person.cpp" />
+    <ClCompile Include="Resident.cpp" />
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Person.h" />
+    <ClInclude Include="Resident.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
   <ImportGroup Label="ExtensionTargets">
