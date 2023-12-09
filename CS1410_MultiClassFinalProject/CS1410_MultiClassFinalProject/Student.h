@@ -1,4 +1,5 @@
 #pragma once
+#include <iostream>
 #include "Resident.h"
 //#include "District.h"
 using namespace std;

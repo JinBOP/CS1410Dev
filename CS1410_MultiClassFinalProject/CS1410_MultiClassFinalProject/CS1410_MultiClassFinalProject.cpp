@@ -3,6 +3,8 @@
 #include "Resident.h"
 #include "Student.h"
 #include "Teacher.h"
+#include "Class.h"
+#include "District.h"
 using namespace std;
 
 int main()
@@ -21,6 +23,9 @@ int main()
 	
 	//Class class("Relativity 101", 31415, 28, "Professor Einstein");
 	//class.FindEmptySeats(31415, 28, 03512);
+
+	District district("magic school bus district");
+	district.GetSchoolsInDistrict("magic school bus district", "community college");
 
 }
 

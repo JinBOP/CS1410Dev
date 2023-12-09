@@ -2,6 +2,7 @@
 #include <iostream>
 #include "Class.h"
 using namespace std;
+
 class Teacher{
 private:
 	string teachername;

@@ -129,6 +129,7 @@
   <ItemGroup>
     <ClCompile Include="Class.cpp" />
     <ClCompile Include="CS1410_MultiClassFinalProject.cpp" />
+    <ClCompile Include="District.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="Resident.cpp" />
     <ClCompile Include="Student.cpp" />
@@ -136,6 +137,7 @@
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Class.h" />
+    <ClInclude Include="District.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Resident.h" />
     <ClInclude Include="Student.h" />
