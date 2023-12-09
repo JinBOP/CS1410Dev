@@ -7,6 +7,7 @@
 #include "Forager.h"
 #include "Transporter.h"
 #include "Colony.h"
+//#include "Predator.h"
 using namespace std;
 
 int main()
@@ -42,4 +43,13 @@ int main()
 
 	colony1.FeedQueen(11);	// colony queen access needs to go through colony
 	colony1.GetQueen().Eat(12, *foodpile2);
+
+	/*Predator predator;
+	ColonyP colony;
+
+	predator.SetCurrentColony(&colony);
+	colony.SetCurrentPredator(&predator);
+
+	predator.Attack();
+	colony.Attack();*/
 };

@@ -132,6 +132,7 @@
     <ClCompile Include="CS1410_AntModel.cpp" />
     <ClCompile Include="FoodPile.cpp" />
     <ClCompile Include="Forager.cpp" />
+    <ClCompile Include="Predator.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="Transporter.cpp" />
@@ -142,6 +143,7 @@
     <ClInclude Include="Colony.h" />
     <ClInclude Include="FoodPile.h" />
     <ClInclude Include="Forager.h" />
+    <ClInclude Include="Predator.h" />
     <ClInclude Include="Queen.h" />
     <ClInclude Include="Soldier.h" />
     <ClInclude Include="Transporter.h" />
