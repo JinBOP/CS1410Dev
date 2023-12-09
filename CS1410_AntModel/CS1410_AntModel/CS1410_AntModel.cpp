@@ -5,6 +5,7 @@
 #include "Soldier.h"
 #include "Worker.h"
 #include "Forager.h"
+#include "Transporter.h"
 using namespace std;
 
 int main()
@@ -27,4 +28,7 @@ int main()
 
 	Forager forager1("Sugar Forager", 7);
 	forager1.Work(8);
+
+	Transporter transporter1("Sugar Transporter", 9);
+	transporter1.Work(10);
 };

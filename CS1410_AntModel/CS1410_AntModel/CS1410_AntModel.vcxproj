@@ -133,6 +133,7 @@
     <ClCompile Include="Forager.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Soldier.cpp" />
+    <ClCompile Include="Transporter.cpp" />
     <ClCompile Include="Worker.cpp" />
   </ItemGroup>
   <ItemGroup>
@@ -141,6 +142,7 @@
     <ClInclude Include="Forager.h" />
     <ClInclude Include="Queen.h" />
     <ClInclude Include="Soldier.h" />
+    <ClInclude Include="Transporter.h" />
     <ClInclude Include="Worker.h" />
   </ItemGroup>
   <Import Project="$(VCTargetsPath)\Microsoft.Cpp.targets" />
