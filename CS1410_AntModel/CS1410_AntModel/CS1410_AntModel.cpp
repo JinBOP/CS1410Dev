@@ -6,6 +6,7 @@
 #include "Worker.h"
 #include "Forager.h"
 #include "Transporter.h"
+#include "Colony.h"
 using namespace std;
 
 int main()
@@ -31,4 +32,14 @@ int main()
 
 	Transporter transporter1("Sugar Transporter", 9);
 	transporter1.Work(10);
+
+	Colony colony1;
+
+	colony1.AddToPile(13);
+	FoodPile* foodpile2 = new FoodPile(14);
+	colony1.SetFoodPile(foodpile2);
+	colony1.AddToPile(15);
+
+	colony1.FeedQueen(11);	// colony queen access needs to go through colony
+	colony1.GetQueen().Eat(12, *foodpile2);
 };

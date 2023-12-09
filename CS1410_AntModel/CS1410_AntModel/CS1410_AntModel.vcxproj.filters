@@ -39,6 +39,9 @@
     <ClCompile Include="Transporter.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="Colony.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="FoodPile.h">
@@ -60,6 +63,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="Transporter.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="Colony.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>
