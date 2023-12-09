@@ -1,5 +1,7 @@
 #pragma once
 #include "Person.h"
+using namespace std;
+
 class Resident : public Person{
 private:
 	// inherited variables from Person class

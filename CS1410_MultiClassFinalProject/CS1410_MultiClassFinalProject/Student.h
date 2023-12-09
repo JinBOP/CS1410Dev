@@ -1,6 +1,7 @@
 #pragma once
 #include "Resident.h"
 #include "District.h"
+using namespace std;
 
 class Student : public Resident{
 private:
