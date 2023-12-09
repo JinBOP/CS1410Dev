@@ -4,6 +4,7 @@
 #include "Queen.h"
 #include "Soldier.h"
 #include "Worker.h"
+#include "Forager.h"
 using namespace std;
 
 int main()
@@ -23,4 +24,7 @@ int main()
 
 	Worker worker1("Sugar Worker", 5);
 	worker1.Work(6);
+
+	Forager forager1("Sugar Forager", 7);
+	forager1.Work(8);
 };

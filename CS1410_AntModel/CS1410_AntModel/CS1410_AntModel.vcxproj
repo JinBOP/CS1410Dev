@@ -130,6 +130,7 @@
     <ClCompile Include="Ant.cpp" />
     <ClCompile Include="CS1410_AntModel.cpp" />
     <ClCompile Include="FoodPile.cpp" />
+    <ClCompile Include="Forager.cpp" />
     <ClCompile Include="Queen.cpp" />
     <ClCompile Include="Soldier.cpp" />
     <ClCompile Include="Worker.cpp" />
@@ -137,6 +138,7 @@
   <ItemGroup>
     <ClInclude Include="Ant.h" />
     <ClInclude Include="FoodPile.h" />
+    <ClInclude Include="Forager.h" />
     <ClInclude Include="Queen.h" />
     <ClInclude Include="Soldier.h" />
     <ClInclude Include="Worker.h" />
