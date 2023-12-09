@@ -3,6 +3,7 @@
 #include "Ant.h"
 #include "Queen.h"
 #include "Soldier.h"
+#include "Worker.h"
 using namespace std;
 
 int main()
@@ -19,4 +20,7 @@ int main()
 
 	Soldier soldier1("Sugar Soldier", 4);
 	soldier1.Attack(ant1);
+
+	Worker worker1("Sugar Worker", 5);
+	worker1.Work(6);
 };
