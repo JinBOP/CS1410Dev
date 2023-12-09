@@ -1,6 +1,6 @@
 #pragma once
 #include <iostream>
-//#include "Class.h"
+#include "Class.h"
 using namespace std;
 class Teacher{
 private:
@@ -8,8 +8,9 @@ private:
 	string teachingclass;
 	string schoolname;	// filler
 protected:
-	bool InClass(string classname, string classid, string teachername) {
-		// checks if teacher is in a class given class info and teacher name
+	bool InClass(string classname, string classid, string teachername) {	// checks if teacher is in a class given class info and teacher name
+		cout << classname << classid << teachername << "InClass is functinoal" << endl;
+		return true;
 	}
 public:
 	// constructor

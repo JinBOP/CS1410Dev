@@ -14,7 +14,7 @@ public:
 	Resident(string firstname, string middlename, string lastname) : firstname(firstname), middlename(middlename), lastname(lastname) {}
 	Resident(string firstname, string middlename, string lastname, string homeaddress) : firstname(firstname), middlename(middlename), lastname(lastname), homeaddress(homeaddress) {}
 	void Home(string firstname, string middlename, string lastname) {	// function to find an individual's home address according to their name
-		cout << firstname << " " << lastname << "'s home address is homeaddress" << endl;
+		cout << firstname << middlename << lastname << "Home is functional" << endl;
 	}
 };
 

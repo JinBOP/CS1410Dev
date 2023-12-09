@@ -19,7 +19,8 @@ int main()
 	Teacher teacher("Professor Einstein", "School of schooling", "Relativity 101");
 	//teacher.Inclass("Relativity 101", 31415, classestaught);
 	
-
+	//Class class("Relativity 101", 31415, 28, "Professor Einstein");
+	//class.FindEmptySeats(31415, 28, 03512);
 
 }
 

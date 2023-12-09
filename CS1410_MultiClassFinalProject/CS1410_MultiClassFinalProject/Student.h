@@ -12,8 +12,9 @@ private:
 	string lastname;
 protected:
 	int studentid;
-	bool InClass(string classname, int classid, int studentid) {
-		// checks if student is in a class given the class info and studentid
+	bool InClass(string classname, int classid, int studentid) {	// checks if student is in a class given the class info and studentid
+		cout << classname << classid << studentid << "InClass is functional" << endl;
+		return true;
 	}
 public:
 	// constructors
