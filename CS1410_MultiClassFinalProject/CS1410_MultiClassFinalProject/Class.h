@@ -13,7 +13,7 @@ public:
 	// constructor
 	Class(string classname, int classid, int availableseats, string teachername) : classname(classname), classid(classid), availableseats(availableseats), teachername(teachername) {}
 	bool FindEmptySeats(int classid, int availableseats, int studentid) {	// iterates through all students in a given class to see if there are any seats available
-		cout << classid << availableseats << studentid << "FindEmptySeats is functional" << endl;
+		cout << classid << " " << availableseats << " " << studentid << " FindEmptySeats is functional" << endl;
 		return true;
 	}
 };

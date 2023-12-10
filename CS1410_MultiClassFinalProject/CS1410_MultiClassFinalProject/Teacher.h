@@ -10,7 +10,7 @@ private:
 	string schoolname;	// filler
 protected:
 	bool InClass(string classname, string classid, string teachername) {	// checks if teacher is in a class given class info and teacher name
-		cout << classname << classid << teachername << "InClass is functinoal" << endl;
+		cout << classname << " " << classid << " " << teachername << " InClass is functinoal" << endl;
 		return true;
 	}
 public:

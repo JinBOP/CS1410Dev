@@ -132,6 +132,7 @@
     <ClCompile Include="District.cpp" />
     <ClCompile Include="Person.cpp" />
     <ClCompile Include="Resident.cpp" />
+    <ClCompile Include="School.cpp" />
     <ClCompile Include="Student.cpp" />
     <ClCompile Include="Teacher.cpp" />
   </ItemGroup>
@@ -140,6 +141,7 @@
     <ClInclude Include="District.h" />
     <ClInclude Include="Person.h" />
     <ClInclude Include="Resident.h" />
+    <ClInclude Include="School.h" />
     <ClInclude Include="Student.h" />
     <ClInclude Include="Teacher.h" />
   </ItemGroup>

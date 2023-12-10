@@ -36,6 +36,9 @@
     <ClCompile Include="District.cpp">
       <Filter>Source Files</Filter>
     </ClCompile>
+    <ClCompile Include="School.cpp">
+      <Filter>Source Files</Filter>
+    </ClCompile>
   </ItemGroup>
   <ItemGroup>
     <ClInclude Include="Person.h">
@@ -54,6 +57,9 @@
       <Filter>Header Files</Filter>
     </ClInclude>
     <ClInclude Include="District.h">
+      <Filter>Header Files</Filter>
+    </ClInclude>
+    <ClInclude Include="School.h">
       <Filter>Header Files</Filter>
     </ClInclude>
   </ItemGroup>

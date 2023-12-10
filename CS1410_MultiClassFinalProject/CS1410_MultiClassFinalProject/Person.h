@@ -13,7 +13,7 @@ public:
 	Person(string firstname, string middlename, string lastname, string homeaddress) : firstname(firstname), middlename(middlename), lastname(lastname), homeaddress(homeaddress) {}
 	void Profile() {	// displays all info known about the individual
 		cout << "Name: " << firstname << " " << middlename << " " << lastname << endl;
-		cout << "Address: " << homeaddress;
+		cout << "Address: " << homeaddress << endl;
 	};
 };
 
